@@ -15,11 +15,32 @@ function butSubm() {
           title: `${inpTitle.value}`,
           description: `${inpDescription.value}`
         });
+        redBorder(false);
+      }
+      else{
+       redBorder(true);
       }
       inpName.value = "";
       inpTitle.value = "";
       inpDescription.value = "";
     RenderPrint();
+  }
+
+
+  function redBorder(expr){
+    const inpName = document.getElementById("inpName");
+    const inpTitle = document.getElementById("inpTitle");
+    const inpDescription = document.getElementById("inpDescription");
+    if(expr){
+      inpName.style.border = "1px solid red";
+      inpTitle.style.border = "1px solid red";
+      inpDescription.style.border = "1px solid red"; 
+    }
+     else{
+      inpName.style.border = "1px solid black";
+      inpTitle.style.border = "1px solid black";
+      inpDescription.style.border = "1px solid black"; 
+     }
   }
 
   export default butSubm;

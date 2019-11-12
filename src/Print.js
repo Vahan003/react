@@ -11,8 +11,8 @@ function Print() {
       <div className="title">{elem.title}</div>
       <div className="description">{elem.description}</div>
       <div>
-        <button onClick={() => Update(elem.id)}>Update</button>
-        <button onClick={() => Remove(elem.id)}>Remove</button>
+        <button id ={"up"+elem.id} onClick={() => Update(elem.id)}>Update</button>
+        <button id = {"re"+elem.id} onClick={() => Remove(elem.id)}>Remove</button>
       </div>
     </div>
   ));
@@ -22,9 +22,14 @@ function Update(id) {
   const inpName = document.getElementById("inpName");
   const inpTitle = document.getElementById("inpTitle");
   const inpDescription = document.getElementById("inpDescription");
- 
+  DisableUpdates(true);
   List.list.map((elem, index) => {
+    
     if (elem.id === id) {
+      inpName.value = elem.name;
+      inpTitle.value = elem.title;
+      inpDescription.value = elem.description;
+       DisableRemove(true, id);
       const but = (
         <button
           className="button"
@@ -37,14 +42,17 @@ function Update(id) {
             List.list[index].name = inpName.value;
             List.list[index].title = inpTitle.value;
             List.list[index].description = inpDescription.value;
-            
             RenderPrint();
             ReactDOM.render(Button(butSubm,"Submit"), document.getElementById("but"))
             inpName.value = "";
             inpTitle.value = "";
             inpDescription.value = "";
             }
-          }}
+            DisableUpdates(false);
+            DisableRemove(false, id);
+            }
+            
+          }
         >
           Update
         </button>
@@ -59,5 +67,29 @@ function Remove(id) {
     if (elem.id === id) delete List.list[index];
   });
   RenderPrint();
+}
+function DisableUpdates(expr){
+  List.list.map((elem) => {
+    const Allupdate = document.getElementById(`up${elem.id}`);
+    if(expr){
+      Allupdate.setAttribute("disabled","");
+      Allupdate.style.opacity="0.4";
+    }
+    else{
+      Allupdate.removeAttribute("disabled");
+      Allupdate.style.opacity="1";
+    }
+  });
+}
+function DisableRemove(expr, id){
+  const remove = document.getElementById(`re${id}`);
+ if(expr){
+  remove.style.opacity="0.4";
+  remove.setAttribute("disabled","");
+ }
+ else{
+  remove.style.opacity="1";
+  remove.removeAttribute("disabled");
+ }
 }
 export default Print;
