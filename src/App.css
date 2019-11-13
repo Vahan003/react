@@ -36,13 +36,15 @@ input{
   border: 1px solid black;
   background-color: seashell;
 }
+input:hover{
+  opacity: 0.9;
+}
 #printroot{
   display: flex;
   width: 66%;
   padding: 5%;
   flex-direction: column;
   justify-content: space-around;
-  
 }
 #inpName{
   height: 20px;

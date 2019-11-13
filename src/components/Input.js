@@ -9,7 +9,7 @@ function  InputSide() {
           <input id="inpTitle" />
           <input id="inpDescription" />
           <div id="but">
-            {Button(butSubm,"Submit")}
+            <Button func = {butSubm} name = "Submit"/>
           </div>
         </div>
         <div id="printroot"></div>

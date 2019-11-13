@@ -43,7 +43,7 @@ function Update(id) {
             List.list[index].title = inpTitle.value;
             List.list[index].description = inpDescription.value;
             RenderPrint();
-            ReactDOM.render(Button(butSubm,"Submit"), document.getElementById("but"))
+            ReactDOM.render(<Button func = {butSubm} name = "Submit"/>, document.getElementById("but"))
             inpName.value = "";
             inpTitle.value = "";
             inpDescription.value = "";
